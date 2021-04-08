@@ -36,6 +36,6 @@ contract ReturnDSProxyMoney{
     
     function returnTokenAmount(address payable DSProxyAddress, address tokenAddress, uint amount) public onlyOwner{
         DSProxy dsProxy = DSProxy(DSProxyAddress);
-        dsProxy.execute(address(returner), abi.encodeWithSignature("returnToken(address, amount)", tokenAddress, amount));
+        dsProxy.execute(address(returner), abi.encodeWithSignature("returnToken(address, uint)", tokenAddress, amount));
     }
 }
