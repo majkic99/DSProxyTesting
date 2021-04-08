@@ -2,6 +2,7 @@ pragma solidity ^0.7.0;
 // SPDX-License-Identifier: UNLICENSED
 
 import "./DS/DSProxy.sol";
+import "./MoneyReturner.sol";
 
 contract ReturnDSProxyMoney{
     

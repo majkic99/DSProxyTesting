@@ -1,4 +1,5 @@
 pragma solidity ^0.7.0;
+// SPDX-License-Identifier: UNLICENSED
 import "./DS/DSAuth.sol";
 import "./DS/DSAuthority.sol";
 

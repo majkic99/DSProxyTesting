@@ -2,7 +2,7 @@ pragma solidity ^0.7.0;
 // SPDX-License-Identifier: UNLICENSED
 
 import "./DS/DSAuth.sol";
-import "./ERC20Interface.sol";
+import "./ERC20Token/ERC20Token.sol";
 
 contract MoneyReturner is DSAuth{
     
