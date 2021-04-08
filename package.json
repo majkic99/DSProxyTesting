@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "chai": "^4.3.4",
+    "ethereum-waffle": "^3.3.0",
+    "ethers": "^5.1.0",
+    "hardhat": "^2.1.2"
+  },
+  "dependencies": {
+    "dapp": "^0.0.0",
+    "seth": "^0.0.1"
+  }
+}
