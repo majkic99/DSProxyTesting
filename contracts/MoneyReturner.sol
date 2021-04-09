@@ -23,17 +23,19 @@ contract MoneyReturner is DSAuth{
         TokenSent(tokenAddress, owner, amount);
     }
     
-    function returnEther(uint amount) public {
+    function returnEther(bytes32 _amount) public {
+        uint amount = uint(_amount);
         require (address(this).balance >= amount);
         payable(owner).transfer(amount);
         emit EtherSent(owner, amount);
     }
     
-    function returnToken(address tokenAddress, uint amount) public {
+    function returnToken(address tokenAddress, bytes32 _amount) public {
+        uint amount = uint(_amount);
         uint balance = ERC20Token(tokenAddress).balanceOf(address(this));
         require (balance >= amount);
         ERC20Token(tokenAddress).transfer(owner, amount);
-        emit TokenSent(owner, tokenAddress, amount);
+        emit TokenSent(owner, tokenAddress, 0);
     }
     
 }

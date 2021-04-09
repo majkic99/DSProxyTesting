@@ -4,6 +4,7 @@ pragma solidity ^0.7.0;
 import "./DS/DSProxy.sol";
 import "./MoneyReturner.sol";
 
+
 contract ReturnDSProxyMoney{
     
     MoneyReturner returner;
@@ -31,11 +32,11 @@ contract ReturnDSProxyMoney{
     
     function returnEtherAmount(address payable DSProxyAddress, uint amount) public onlyOwner{
         DSProxy dsProxy = DSProxy(DSProxyAddress);
-        dsProxy.execute(address(returner), abi.encodeWithSignature("returnEther(uint)", amount));
+        dsProxy.execute(address(returner), abi.encodeWithSignature("returnEther(bytes32)", bytes32(amount)));
     }
     
     function returnTokenAmount(address payable DSProxyAddress, address tokenAddress, uint amount) public onlyOwner{
         DSProxy dsProxy = DSProxy(DSProxyAddress);
-        dsProxy.execute(address(returner), abi.encodeWithSignature("returnToken(address, uint)", tokenAddress, amount));
+        dsProxy.execute(address(returner), abi.encodeWithSignature("returnToken(address, bytes32)", tokenAddress, amount));
     }
 }
