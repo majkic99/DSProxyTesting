@@ -1,10 +1,10 @@
 pragma solidity ^0.7.0;
 // SPDX-License-Identifier: UNLICENSED
 
-import "./DS/DSAuth.sol";
 import "./ERC20Token/ERC20Token.sol";
+import "./DS/DSProxy.sol";
 
-contract MoneyReturner is DSAuth{
+contract MoneyReturner {
     
     
     event EtherSent(address, uint);
@@ -12,18 +12,21 @@ contract MoneyReturner is DSAuth{
     
     
     function returnEther() public{
+        address owner = DSProxy(payable(address(this))).owner();
         uint amount = address(this).balance;
         payable(owner).transfer(amount);
         EtherSent(owner, amount);
     }
     
     function returnToken(address tokenAddress) public{
+        address owner = DSProxy(payable(address(this))).owner();
         uint amount = ERC20Token(tokenAddress).balanceOf(address(this));
         ERC20Token(tokenAddress).transfer(owner, amount);
         TokenSent(tokenAddress, owner, amount);
     }
     
     function returnEther(bytes32 _amount) public {
+        address owner = DSProxy(payable(address(this))).owner();
         uint amount = uint(_amount);
         require (address(this).balance >= amount);
         payable(owner).transfer(amount);
@@ -31,6 +34,7 @@ contract MoneyReturner is DSAuth{
     }
     
     function returnToken(address tokenAddress, bytes32 _amount) public {
+        address owner = DSProxy(payable(address(this))).owner();
         uint amount = uint(_amount);
         uint balance = ERC20Token(tokenAddress).balanceOf(address(this));
         require (balance >= amount);

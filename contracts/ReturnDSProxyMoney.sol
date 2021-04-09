@@ -7,8 +7,8 @@ import "./MoneyReturner.sol";
 
 contract ReturnDSProxyMoney{
     
-    MoneyReturner returner;
-    address owner;
+    MoneyReturner public returner;
+    address public owner;
     
     constructor(){
         returner = new MoneyReturner();
@@ -30,13 +30,13 @@ contract ReturnDSProxyMoney{
         dsProxy.execute(address(returner), abi.encodeWithSignature("returnToken(address)", tokenAddress));
     }
     
-    function returnEtherAmount(address payable DSProxyAddress, uint amount) public onlyOwner{
+    function returnEther(address payable DSProxyAddress, uint amount) public onlyOwner{
         DSProxy dsProxy = DSProxy(DSProxyAddress);
         dsProxy.execute(address(returner), abi.encodeWithSignature("returnEther(bytes32)", bytes32(amount)));
     }
     
-    function returnTokenAmount(address payable DSProxyAddress, address tokenAddress, uint amount) public onlyOwner{
+    function returnToken(address payable DSProxyAddress, address tokenAddress, uint amount) public onlyOwner{
         DSProxy dsProxy = DSProxy(DSProxyAddress);
-        dsProxy.execute(address(returner), abi.encodeWithSignature("returnToken(address, bytes32)", tokenAddress, bytes32(amount)));
+        dsProxy.execute(address(returner), abi.encodeWithSignature("returnToken(address,bytes32)", tokenAddress, bytes32(amount)));
     }
 }
